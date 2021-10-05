@@ -1,40 +1,35 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  labels:
-    app: impc-api-service-dev
-  name: impc-api-service-dev
+  name: impc-mousephenotype-api-dev
   namespace: mi-pa-test
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: impc-api-service-dev
-  strategy:
-    type: Recreate
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        app: impc-api-service-dev
+        app: impc-mousephenotype-api-dev
     spec:
-      imagePullSecrets:
-        - name: impcapiregistrycredentials
       containers:
-        - image: dockerhub.ebi.ac.uk/mouse-informatics/impc-mousephenotype-api:latest
+        - name: impc-mousephenotype-api-dev
+          image: "mouse-informatics/impc-mousephenotype-api:latest"
           imagePullPolicy: Always
-          name: impc-api-service-dev
-          env:
-            - name: IMPC_API_DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: db-credentials
-                  key: db_password
-          envFrom:
-            - configMapRef:
-                name: database-conn
           ports:
             - containerPort: 8080
-              protocol: TCP
-          resources: {}
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: impc-mousephenotype-api-dev-service
+  namespace: mi-pa-test
+  labels:
+    name: impc-mousephenotype-api-dev-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: impc-mousephenotype-api-dev
+  type: NodePort
