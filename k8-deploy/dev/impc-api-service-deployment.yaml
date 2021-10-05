@@ -21,7 +21,7 @@ spec:
       imagePullSecrets:
         - name: impcapiregistrycredentials
       containers:
-        - image: dockerhub.ebi.ac.uk/mouse-informatics/impc-mousephenotype-api:latest
+        - image: mouse-informatics/impc-mousephenotype-api:latest
           imagePullPolicy: Always
           name: impc-mousephenotype-api-service-dev
           env:
@@ -37,3 +37,20 @@ spec:
             - containerPort: 8080
               protocol: TCP
           resources: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: impc-mousephenotype-api-service-dev
+  namespace: pdcm-web-ui-dev
+  labels:
+    name: pdcm-web-ui-dev-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app: impc-mousephenotype-api-service-dev
+  type: NodePort
