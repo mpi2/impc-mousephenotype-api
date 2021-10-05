@@ -23,14 +23,14 @@ spec:
           imagePullPolicy: Always
           name: impc-api-service-dev
           env:
-            - name: SERVER_SERVLET_CONTEXT_PATH
-              value: /production-tracker-dev-api
-            - name: TRACKER_POSTGRESQL_DB_HOST
-              value: production-tracker-dev-database
-            - name: TRACKER_POSTGRESQL_DB_PORT
-              value: "5432"
-            - name: REDEPLOY_KEY
-              value: "STRING_REPLACED_DURING_REDEPLOY"
+            - name: IMPC_API_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: db_password
+          envFrom:
+            - configMapRef:
+                name: database-conn
           ports:
             - containerPort: 8080
               protocol: TCP
