@@ -71,7 +71,7 @@ build_main_image:
           echo "Pushing to docker hub"
           echo "${DOCKER_HUB_PWD}" | docker login --username "${DOCKER_HUB_USER}" --password-stdin
           docker tag "${CI_REGISTRY_IMAGE}":latest "${DOCKER_HUB_USER}"/"${DOCKER_HUB_REPO}":latest
-          docker push "${DOCKER_HUB_USER}"/"${DOCKER_HUB_REPO}":latest  | tee ${MOUNT_POINT}/dockerhub-push-latest.log
+          docker push "${CI_REGISTRY_IMAGE}":latest  | tee ${MOUNT_POINT}/dockerhub-push-latest.log
       fi
     - docker logout
 
