@@ -43,9 +43,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: impc-mousephenotype-api-service-dev
-  namespace: pdcm-web-ui-dev
+  namespace: mi-pa-test
   labels:
-    name: pdcm-web-ui-dev-service
+    name: impc-mousephenotype-api-service-dev
 spec:
   ports:
     - protocol: TCP
