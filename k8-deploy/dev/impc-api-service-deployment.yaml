@@ -18,8 +18,10 @@ spec:
       labels:
         app: impc-mousephenotype-api-service-dev
     spec:
+      imagePullSecrets:
+        - name: impcapiregistrycredentials
       containers:
-        - image: mouse-informatics/impc-mousephenotype-api:latest
+        - image: dockerhub.ebi.ac.uk/mouse-informatics/impc-mousephenotype-api:latest
           imagePullPolicy: Always
           name: impc-mousephenotype-api-service-dev
           env:
