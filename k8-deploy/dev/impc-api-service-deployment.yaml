@@ -18,6 +18,8 @@ spec:
       labels:
         app: impc-api-service-dev
     spec:
+      imagePullSecrets:
+        - name: trackerapiregistrycredentials
       containers:
         - image: mouse-informatics/impc-mousephenotype-api:latest
           imagePullPolicy: Always
