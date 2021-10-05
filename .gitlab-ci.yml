@@ -111,10 +111,6 @@ hx-dev:
         else
             echo "=> Deployment apply has changed the object, no need to force image update."
         fi
-        #
-        #
-        # Log the status of the application deployment
-        #
-        kubectl rollout status -f k8-deploy/dev/impc-api-service-deployment.yaml
+
         kubectl get pod,deployment,rs,svc,ing
       fi
