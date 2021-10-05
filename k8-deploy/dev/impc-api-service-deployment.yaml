@@ -19,7 +19,7 @@ spec:
         app: impc-api-service-dev
     spec:
       imagePullSecrets:
-        - name: trackerapiregistrycredentials
+        - name: impcapiregistrycredentials
       containers:
         - image: dockerhub.ebi.ac.uk/mouse-informatics/impc-mousephenotype-api:latest
           imagePullPolicy: Always
