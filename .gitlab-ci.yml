@@ -116,15 +116,17 @@ hx-dev:
         # TOKEN=$( curl -sSLd "username=${DOCKER_HUB_USER}&password=${DOCKER_HUB_PSWD}" https://hub.docker.com/v2/users/login | jq -r ".token" )
         # JSON=$( curl -sH "Authorization: JWT $TOKEN" "https://hub.docker.com/v2/repositories/${DOCKER_HUB_USER}/${DOCKER_HUB_REPO}/tags/${CI_COMMIT_SHA:0:12}/")
         # IMAGE_TAG_NAME=$(echo $JSON | jq  -r '.name')
-
+        echo "=> Getting registry data."
         REGISTRY_JSON=$( curl --header "PRIVATE-TOKEN: ${GITLAB_API_ACCESS_TOKEN}" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/registry/repositories/")
         REGISTRY_REPOSITORY_ID=$(echo $REGISTRY_JSON | jq '.[0].id')
 
+        echo "=> Getting tag name."
         JSON=$( curl --header "PRIVATE-TOKEN: ${GITLAB_API_ACCESS_TOKEN}" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/registry/repositories/${REGISTRY_REPOSITORY_ID}/tags/${CI_COMMIT_SHA:0:12}/")
         IMAGE_TAG_NAME=$(echo $JSON | jq  -r '.name')
 
         if [ "$IMAGE_TAG_NAME" = "${CI_COMMIT_SHA:0:12}" ]; then
             # Substitute the "latest" image tag in your deployment template
+            echo "=> Replace latest with COMMIT_SHA:0:12."
             sed -i "s/impc-mousephenotype-api:latest/impc-mousephenotype-api:${CI_COMMIT_SHA:0:12}/g" k8-deploy/dev/impc-api-service-deployment.yaml
         else
             # DO NOT push out the latest tag to ensure rollback is possible.
