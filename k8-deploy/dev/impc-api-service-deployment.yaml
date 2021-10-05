@@ -21,10 +21,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: impc-mousephenotype-api-dev-service
+  name: impc-mousephenotype-api-dev
   namespace: mi-pa-test
   labels:
-    name: impc-mousephenotype-api-dev-service
+    name: impc-mousephenotype-api-dev
 spec:
   ports:
     - protocol: TCP
