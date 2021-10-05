@@ -98,7 +98,7 @@ hx-dev:
   rules:
     - if: '$PRODUCTION_DEPLOYMENT != "true" && $CI_PROJECT_NAMESPACE == "mouse-informatics" && $CI_BUILD_REF_NAME == "main"'
   script:
-    # Only deploy from the MPI2 impc-mousphenotype-api repository rather than repository forks
+    # Only deploy from the MPI2 impc-mousephenotype-api repository rather than repository forks
     - |
       if [ ! -z ${HX_KUBERNETES_ENDPOINT+set} ]; then
 
@@ -132,7 +132,7 @@ hx-dev:
 
         if [ "$IMAGE_TAG_NAME" = "${CI_COMMIT_SHA:0:12}" ]; then
             # Substitute the "latest" image tag in your deployment template
-            sed -i "s/impc-mousphenotype-api:latest/impc-mousphenotype-api:${CI_COMMIT_SHA:0:12}/g" k8-deploy/dev/impc-api-service-deployment.yaml
+            sed -i "s/impc-mousephenotype-api:latest/impc-mousephenotype-api:${CI_COMMIT_SHA:0:12}/g" k8-deploy/dev/impc-api-service-deployment.yaml
         else
             # DO NOT push out the latest tag to ensure rollback is possible.
             exit 1
