@@ -1,3 +1,5 @@
+#!/bin/bash
+
 java  -Dhttps.proxyHost=hx-wwwcache.ebi.ac.uk \
       -Dhttps.proxyPort=3128 \
       -Dhttp.proxyHost=hx-wwwcache.ebi.ac.uk \
