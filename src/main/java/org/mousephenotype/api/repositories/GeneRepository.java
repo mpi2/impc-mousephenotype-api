@@ -13,4 +13,6 @@ import java.util.List;
 
 public interface GeneRepository extends PagingAndSortingRepository<Gene, String> {
     Page<Gene> findAllBySignificantMpTermIdsContains(List<String> mpTermIds, Pageable pageable);
+    Gene getGeneByMgiAccessionId(String mgiAccessionId);
+    Page<Gene> findAllByMgiAccessionIdIn(List<String> mgiAccessionIds, Pageable pageable);
 }

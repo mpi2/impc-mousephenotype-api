@@ -10,5 +10,4 @@ import java.util.ArrayList;
 public interface GeneBundleRepository extends MongoRepository<GeneBundle, String> {
     GeneBundle getGeneBundleByMgiAccessionId(String mgiAccessionId);
     ArrayList<GeneBundle> getGeneBundlesByMgiAccessionIdIn(ArrayList<String> mgiAccessionId);
-    ArrayList<GeneBundle> getGeneBundlesBySignificantTopLevelMpTerms(String mpTerm);
 }
