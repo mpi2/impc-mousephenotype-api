@@ -18,7 +18,8 @@ import java.util.List;
 @Document(collection = "genes")
 public class GeneBundle {
     @Id
-    private ObjectId id;
+    private String id;
+    private String mgiAccessionId;
     private List<String> alleleName;
     private String analysisDownloadUrl;
     private String assignmentStatus;
@@ -48,7 +49,7 @@ public class GeneBundle {
     private List<String> markerSynonym;
     private String markerType;
     private String mgi;
-    private String mgiAccessionId;
+
     private String mouseProductionStatus;
     private List<String> notSignificantTopLevelMpTerms;
     private String nullAlleleProductionStatus;
