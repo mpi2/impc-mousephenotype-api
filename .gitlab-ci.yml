@@ -69,7 +69,7 @@ build_main_image:
           sed -i "s|FROM maven|FROM ${LOCAL_GITLAB_MAVEN_IMAGE}|g" Dockerfile       
           sed -i "s|FROM openjdk|FROM ${LOCAL_GITLAB_OPENJDK_IMAGE}|g" Dockerfile       
           
-          docker build-t "${CI_REGISTRY_IMAGE}":"${CI_COMMIT_SHA:0:12}" -t "${CI_REGISTRY_IMAGE}":latest -f Dockerfile .  | tee ${MOUNT_POINT}/build.log
+          docker build -t "${CI_REGISTRY_IMAGE}":"${CI_COMMIT_SHA:0:12}" -t "${CI_REGISTRY_IMAGE}":latest -f Dockerfile .  | tee ${MOUNT_POINT}/build.log
           
           docker push "${CI_REGISTRY_IMAGE}":latest  | tee ${MOUNT_POINT}/push.log
           docker push "${CI_REGISTRY_IMAGE}":"${CI_COMMIT_SHA:0:12}"  | tee ${MOUNT_POINT}/push.log
