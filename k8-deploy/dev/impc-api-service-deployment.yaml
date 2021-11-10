@@ -20,6 +20,7 @@ spec:
     spec:
       imagePullSecrets:
         - name: impcapiregistrycredentials
+        - name: alpineregistrycredentials
       volumes:
         - name: tomcatlog
           emptyDir: {}
@@ -40,11 +41,11 @@ spec:
             - name: SERVER_TOMCAT_BASEDIR
               value: /tomcat
             - name: SERVER_TOMCAT_ACCESSLOG_ENABLED
-              value: /tomcat
+              value: true
             - name: SERVER_TOMCAT_ACCESSLOG_DIRECTORY
-              value: /tomcat
+              value: logs
             - name: SERVER_TOMCAT_ACCESSLOG_ROTATE
-              value: /tomcat
+              value: false
             - name: SERVER_TOMCAT_ACCESSLOG_FILE-DATE-FORMAT
               value: 
             - name: SERVER_TOMCAT_ACCESSLOG_PATTERN
