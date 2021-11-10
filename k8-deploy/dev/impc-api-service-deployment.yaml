@@ -31,7 +31,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: db-credentials
-                  key: db_passwor
+                  key: db_password
             - name: REDEPLOY_KEY
               value: "STRING_REPLACED_DURING_REDEPLOY"
           envFrom:
