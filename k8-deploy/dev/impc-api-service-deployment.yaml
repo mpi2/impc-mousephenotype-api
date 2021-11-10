@@ -41,13 +41,13 @@ spec:
             - name: SERVER_TOMCAT_BASEDIR
               value: /tomcat
             - name: SERVER_TOMCAT_ACCESSLOG_ENABLED
-              value: true
+              value: 'true'
             - name: SERVER_TOMCAT_ACCESSLOG_DIRECTORY
               value: logs
             - name: SERVER_TOMCAT_ACCESSLOG_ROTATE
-              value: false
+              value: 'false'
             - name: SERVER_TOMCAT_ACCESSLOG_FILE-DATE-FORMAT
-              value: 
+              value: ''
             - name: SERVER_TOMCAT_ACCESSLOG_PATTERN
               value: "%t %{X-Original-Forwarded-For}i %{X-Forwarded-For}i %s \"%r\" %b (%D ms) %{User-Agent}i %a %{Referer}i"
           envFrom:
