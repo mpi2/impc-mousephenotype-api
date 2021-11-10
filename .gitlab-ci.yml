@@ -57,7 +57,7 @@ build_main_image:
     - name: $CI_REGISTRY/mouse-informatics/dind:latest
       alias: docker
   rules:
-    - if: '$CI_BUILD_REF_NAME == "master" && $CI_PIPELINE_SOURCE != "schedule"'
+    - if: '$CI_BUILD_REF_NAME == "main" && $CI_PIPELINE_SOURCE != "schedule"'
       when: on_success
   before_script:
     - mkdir -p "$MOUNT_POINT"
