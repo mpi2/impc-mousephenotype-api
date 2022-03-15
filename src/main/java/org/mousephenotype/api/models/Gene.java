@@ -33,4 +33,5 @@ public class Gene {
     private List<String> significantPhenotypeSystem;
     private List<String> significantMpTermIds;
     private List<String> significantMpTermNames;
+    private List<GeneParameter> testedParameters;
 }
