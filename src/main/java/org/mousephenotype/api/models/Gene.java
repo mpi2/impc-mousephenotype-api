@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -31,7 +30,6 @@ public class Gene {
     private Boolean phenotypingDataAvailable;
     private List<String> nonSignificantPhenotypeSystem;
     private List<String> significantPhenotypeSystem;
-    private List<String> significantMpTermIds;
-    private List<String> significantMpTermNames;
+    private List<MpTerm> significantMpTerms;
     private List<GeneParameter> testedParameters;
 }

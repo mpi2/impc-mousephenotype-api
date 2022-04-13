@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface GeneRepository extends PagingAndSortingRepository<Gene, String> {
+    @Query("{'significant_mp_terms.mp_term_id': {$in: ?0}}")
     Page<Gene> findAllBySignificantMpTermIdsContains(List<String> mpTermIds, Pageable pageable);
+
     Gene getGeneByMgiAccessionId(String mgiAccessionId);
     Page<Gene> findAllByMgiAccessionIdIn(List<String> mgiAccessionIds, Pageable pageable);
 
