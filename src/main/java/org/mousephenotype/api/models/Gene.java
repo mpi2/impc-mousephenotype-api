@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "genes_search")
+@Document(collection = "gene_search")
 public class Gene {
     @Id
     private String id;

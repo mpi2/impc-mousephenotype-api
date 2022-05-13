@@ -16,6 +16,9 @@ public interface GeneRepository extends PagingAndSortingRepository<Gene, String>
     @Query("{'significant_mp_terms.mp_term_id': {$in: ?0}}")
     Page<Gene> findAllBySignificantMpTermIdsContains(List<String> mpTermIds, Pageable pageable);
 
+    @Query("{'significant_mp_terms.top_level_ancestors.mp_term_id': {$in: ?0}}")
+    Page<Gene> findAllBySignificantTopLevelMpTermIdsContains(List<String> mpTermIds, Pageable pageable);
+
     Gene getGeneByMgiAccessionId(String mgiAccessionId);
     Page<Gene> findAllByMgiAccessionIdIn(List<String> mgiAccessionIds, Pageable pageable);
 

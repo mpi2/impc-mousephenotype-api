@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "genes")
+@Document(collection = "gene_bundles")
 public class GeneBundle {
     @Id
     private String id;
@@ -37,7 +37,7 @@ public class GeneBundle {
     private List<GeneImage> geneImages;
     private List<GenePhenotypeAssociation> genePhenotypeAssociations;
     private List<GeneProduct> geneProducts;
-    private List<GeneStatisticalResult> geneStatisticalResults;
+   // private List<GeneStatisticalResult> geneStatisticalResults;
     private Boolean hasAutomatedAnalysis;
     private List<String> humanGeneSymbol;
     private Boolean isIdgGene;
