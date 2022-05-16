@@ -1,0 +1,112 @@
+package org.mousephenotype.api.models;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Document(collection = "statistical_results")
+public class StatisticalResult {
+    private String id;
+    private String alleleAccessionId;
+    private String alleleSymbol;
+    private String batchSignificant;
+    private String classificationTag;
+    private String dataType;
+    private String docId;
+    private String femaleControlCount;
+    private String geneticBackground;
+    private String genotypeEffectPValue;
+    private double interceptEstimate;
+    private List<String> lifeStageAcc;
+    private List<String> lifeStageName;
+    private String maleControlCount;
+    private String markerSymbol;
+    private List<String> metadata;
+    private String metadataGroup;
+    private String pValue;
+    private String parameterStableId;
+    private List<String> parameterStableKey;
+    private String phenotypingCenter;
+    private String pipelineName;
+    private String pipelineStableId;
+    private long pipelineStableKey;
+    private List<String> procedureName;
+    private List<String> procedureStableId;
+    private List<String> procedureStableKey;
+    private String productionCenter;
+    private List<String> projectFullname;
+    private String resourceFullname;
+    private String significant;
+    private long softWindowingBandwidth;
+    private String statisticalMethod;
+    private String strainName;
+    private String varianceSignificant;
+    private String zygosity;
+    private String alleleName;
+    private String colonyId;
+    private String effectSize;
+    private String femaleControlDiversityInResponse;
+    private double genotypeEffectParameterEstimate;
+    private double interceptEstimateStderrEstimate;
+    private String maleControlDiversityInResponse;
+    private List<String> mpTermIdOptions;
+    private String parameterName;
+    private List<String> phenotypeSex;
+    private String procedureGroup;
+    private List<String> projectName;
+    private String resourceName;
+    private String softWindowingDoeNote;
+    private String status;
+    private List<String> topLevelMpTermId;
+    private double femaleControlMean;
+    private double genotypeEffectStderrEstimate;
+    private double maleControlMean;
+    private long softWindowingMinObsRequired;
+    private String strainAccessionId;
+    private double femaleControlSd;
+    private String group1Genotype;
+    private List<String> intermediateMpTermId;
+    private double maleControlSd;
+    private List<String> mpTermNameOptions;
+    private long softWindowingNumberOfDoe;
+    private List<String> topLevelMpTermName;
+    private long femaleControlUniqueN;
+    private double group1ResidualsNormalityTest;
+    private long maleControlUniqueN;
+    private String softWindowingPeaks;
+    private double femaleEffectSize;
+    private String group2Genotype;
+    private List<String> intermediateMpTermName;
+    private double maleEffectSize;
+    private double softWindowingShape;
+    private String femaleKoEffectPValue;
+    private double group2ResidualsNormalityTest;
+    private String maleKoEffectPValue;
+    private double softWindowingThreshold;
+    private double femaleKoEffectStderrEstimate;
+    private double maleKoEffectStderrEstimate;
+    private long softWindowingTotalObsOrWeight;
+    private String femaleKoParameterEstimate;
+    private String maleKoParameterEstimate;
+    private String femaleMutantCount;
+    private String maleMutantCount;
+    private String femaleMutantDiversityInResponse;
+    private String maleMutantDiversityInResponse;
+    private double femaleMutantMean;
+    private double maleMutantMean;
+    private double femaleMutantSd;
+    private double maleMutantSd;
+    private long femaleMutantUniqueN;
+    private long maleMutantUniqueN;
+    private String femalePercentageChange;
+    private String malePercentageChange;
+    private String markerAccessionId;
+}

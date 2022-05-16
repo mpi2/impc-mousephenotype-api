@@ -5,14 +5,24 @@ import org.mousephenotype.api.models.Gene;
 import org.mousephenotype.api.models.GeneBundle;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public interface GeneRepository extends PagingAndSortingRepository<Gene, String> {
+
+    @Query(value = "{}", fields = "{'mgiAccessionId': 1, 'significant_mp_terms.mp_term_id':  1, 'significant_mp_terms.mp_term_name':  1}")
+    Page<Gene> significantPhenotypesByGene(@PageableDefault(size = 1000, sort = "_id", direction = Sort.Direction.ASC) Pageable pageable);
+
+    @Query(value = "{}")
+    Page<Gene> getAll(@PageableDefault(size = 1000, sort = "_id", direction = Sort.Direction.ASC) Pageable pageable);
+
     @Query("{'significant_mp_terms.mp_term_id': {$in: ?0}}")
     Page<Gene> findAllBySignificantMpTermIdsContains(List<String> mpTermIds, Pageable pageable);
 
