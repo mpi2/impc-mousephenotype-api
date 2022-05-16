@@ -36,7 +36,7 @@ public class GeneBundle {
     private String esCellProductionStatus;
     private List<GeneImage> geneImages;
     private List<GenePhenotypeAssociation> genePhenotypeAssociations;
-    private List<GeneProduct> geneProducts;
+    //private List<GeneProduct> geneProducts;
    // private List<GeneStatisticalResult> geneStatisticalResults;
     private Boolean hasAutomatedAnalysis;
     private List<String> humanGeneSymbol;

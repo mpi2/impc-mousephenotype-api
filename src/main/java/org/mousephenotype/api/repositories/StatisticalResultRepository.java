@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface StatisticalResultRepository extends PagingAndSortingRepository<StatisticalResult, String> {
     Page<StatisticalResult> findAllByMarkerAccessionIdIn(List<String> mgiAccessionIds, Pageable pageable);
+
+    Page<StatisticalResult> findAllByMarkerAccessionIdIsAndSignificantTrue(String mgiAccessionId, Pageable pageable);
 }

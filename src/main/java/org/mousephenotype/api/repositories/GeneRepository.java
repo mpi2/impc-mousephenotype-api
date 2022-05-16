@@ -36,13 +36,13 @@ public interface GeneRepository extends PagingAndSortingRepository<Gene, String>
     Page<Gene> findAllByTestedParameter(String parameterName, Pageable pageable);
 
     @Query("{'tested_parameters.procedure_name': {'$regex' : '.*?0.*', '$options' : 'i'}}")
-    Page<Gene> findAllByTestedProcedure(String procedureName, Pageable pageable);
+    Page<Gene> findAllByTestedProcedure(String procedureName, @PageableDefault(size = 1000, sort = "significant_mp_terms", direction = Sort.Direction.DESC) Pageable pageable);
 
     @Query("{'tested_parameters.parameter_stable_id': '?0'}")
     Page<Gene> findAllByTestedParameterId(String parameterId, Pageable pageable);
 
     @Query("{'tested_parameters.procedure_stable_id': '?0'}")
-    Page<Gene> findAllByTestedProcedureId(String procedureId, Pageable pageable);
+    Page<Gene> findAllByTestedProcedureId(String procedureId, @PageableDefault(size = 1000, sort = "significant_mp_terms", direction = Sort.Direction.DESC) Pageable pageable);
 
     @Query("{'tested_parameters.pipeline_stable_id': '?0'}")
     Page<Gene> findAllByTestedPipelineId(String pipelineId, Pageable pageable);
