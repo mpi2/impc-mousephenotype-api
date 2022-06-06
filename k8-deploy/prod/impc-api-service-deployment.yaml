@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: impc-mousephenotype-api-service
+  name: impc-mousephenotype-api-service
+  namespace: mi-pa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: impc-mousephenotype-api-service
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: impc-mousephenotype-api-service
+    spec:
+      imagePullSecrets:
+        - name: impcapiregistrycredentials
+        - name: alpineregistrycredentials
+      volumes:
+        - name: tomcatlog
+          emptyDir: {}
+      containers:
+        - image: dockerhub.ebi.ac.uk/mouse-informatics/impc-mousephenotype-api:latest
+          imagePullPolicy: Always
+          name: impc-mousephenotype-api-service
+          env:
+            - name: IMPC_API_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: db_password
+            - name: REDEPLOY_KEY
+              value: "STRING_REPLACED_DURING_REDEPLOY"
+            - name: SERVER_SERVLET_CONTEXT_PATH
+              value: /impc-dev-api
+            - name: SERVER_TOMCAT_BASEDIR
+              value: /tomcat
+            - name: SERVER_TOMCAT_ACCESSLOG_ENABLED
+              value: 'true'
+            - name: SERVER_TOMCAT_ACCESSLOG_DIRECTORY
+              value: logs
+            - name: SERVER_TOMCAT_ACCESSLOG_ROTATE
+              value: 'false'
+            - name: SERVER_TOMCAT_ACCESSLOG_FILE-DATE-FORMAT
+              value: ''
+            - name: SERVER_TOMCAT_ACCESSLOG_PATTERN
+              value: "%t %{X-Original-Forwarded-For}i %{X-Forwarded-For}i %s \"%r\" %b (%D ms) %{User-Agent}i %a %{Referer}i"
+          envFrom:
+            - configMapRef:
+                name: database-conn
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 120
+            periodSeconds: 60
+          resources: {}
+          volumeMounts:
+            - name: tomcatlog
+              mountPath: /tomcat/logs
+        - image: dockerhub.ebi.ac.uk/mouse-informatics/alpine:latest
+          imagePullPolicy: Always
+          name: api-accesslog
+          args: [/bin/sh, -c, 'tail -n+1 -f /tomcat/logs/access_log.log']
+          readinessProbe:
+            exec:
+              command:
+                - ls
+                - /tomcat/logs/access_log.log
+            failureThreshold: 30
+            periodSeconds: 10
+          volumeMounts:
+            - name: tomcatlog
+              mountPath: /tomcat/logs
+

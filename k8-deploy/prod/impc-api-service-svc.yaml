@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: impc-mousephenotype-api-service
+  namespace: mi-pa
+  labels:
+    name: impc-mousephenotype-api-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+  selector:
+    app: impc-mousephenotype-api-service
+  type: NodePort
